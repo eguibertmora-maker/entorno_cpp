@@ -7,7 +7,7 @@
             "command": "g++",
             "args": [
                 "-Wall",
-                "${workspaceFolder}/src/main.cpp",
+                "${workspaceFolder}/general/src/main.cpp",
                 "-o",
                 "/tmp/app_cpp"
             ],
