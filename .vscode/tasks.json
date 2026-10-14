@@ -5,16 +5,31 @@
             "label": "Compilar C++ en RAM",
             "type": "shell",
             "command": "g++",
-            "args": [
-                "-Wall",
-                "${workspaceFolder}/general/src/main.cpp",
-                "-o",
-                "/tmp/app_cpp"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "args": ["-Wall", "${workspaceFolder}/general/src/main.cpp", "-o", "/tmp/app_cpp"],
+            "problemMatcher": ["$gcc"],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "Compilar Arduino en RAM",
+            "type": "shell",
+            "command": "./compilar.sh",
+            "args": ["${input:proyectoArduino}"],
+            "options": { "cwd": "${workspaceFolder}/arduino" },
+            "problemMatcher": ["$gcc"],
+            "group": "build"
+        },
+        {
+            "label": "Compilar ESP32 en RAM",
+            "type": "shell",
+            "command": "./compilar_esp32.sh",
+            "args": ["${input:proyectoEsp32}"],
+            "options": { "cwd": "${workspaceFolder}/esp32" },
+            "problemMatcher": ["$gcc"],
+            "group": "build"
         }
+    ],
+    "inputs": [
+        { "id": "proyectoArduino", "type": "promptString", "description": "Carpeta del proyecto Arduino", "default": "proyecto_prueba" },
+        { "id": "proyectoEsp32", "type": "promptString", "description": "Carpeta del proyecto ESP32", "default": "prueba_esp32" }
     ]
 }
